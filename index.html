@@ -41,185 +41,107 @@
 
   .app { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
 
-  .header {
-    text-align: center;
-    margin-bottom: 28px;
-  }
+  .header { text-align: center; margin-bottom: 28px; }
   .header h1 {
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.6rem; font-weight: 700;
     background: linear-gradient(135deg, var(--accent-light), var(--green));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     margin-bottom: 4px;
   }
   .header p { color: var(--text-muted); font-size: 0.8rem; }
 
-  /* Timer Section */
+  .sync-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;
+  }
+  .sync-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-muted); transition: background 0.3s;
+  }
+  .sync-dot.connected { background: var(--green); }
+  .sync-dot.error { background: var(--red); }
+  .sync-dot.syncing { background: var(--orange); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
   .timer-section {
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    padding: 32px;
-    text-align: center;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    margin-bottom: 20px;
+    background: var(--bg-card); border-radius: var(--radius);
+    padding: 32px; text-align: center;
+    border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 20px;
   }
 
   .mode-tabs {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-    margin-bottom: 24px;
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    padding: 4px;
-    display: inline-flex;
+    display: inline-flex; gap: 6px; justify-content: center;
+    margin-bottom: 24px; background: var(--bg-secondary);
+    border-radius: 8px; padding: 4px;
   }
   .mode-tab {
-    padding: 8px 20px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    background: transparent;
-    transition: all 0.2s;
+    padding: 8px 20px; border-radius: 6px; border: none; cursor: pointer;
+    font-family: inherit; font-size: 0.8rem; font-weight: 500;
+    color: var(--text-secondary); background: transparent; transition: all 0.2s;
   }
-  .mode-tab.active {
-    background: var(--accent);
-    color: white;
-    box-shadow: 0 2px 12px var(--accent-glow);
-  }
+  .mode-tab.active { background: var(--accent); color: white; box-shadow: 0 2px 12px var(--accent-glow); }
   .mode-tab:hover:not(.active) { color: var(--text-primary); background: var(--bg-hover); }
 
-  .timer-ring-container {
-    position: relative;
-    width: 220px;
-    height: 220px;
-    margin: 0 auto 24px;
-  }
-  .timer-ring-svg {
-    width: 220px;
-    height: 220px;
-    transform: rotate(-90deg);
-  }
+  .timer-ring-container { position: relative; width: 220px; height: 220px; margin: 0 auto 24px; }
+  .timer-ring-svg { width: 220px; height: 220px; transform: rotate(-90deg); }
   .timer-ring-bg { fill: none; stroke: var(--bg-secondary); stroke-width: 6; }
   .timer-ring-progress {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 6;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 0.5s ease, stroke 0.3s;
+    fill: none; stroke: var(--accent); stroke-width: 6;
+    stroke-linecap: round; transition: stroke-dashoffset 0.5s ease, stroke 0.3s;
   }
   .timer-ring-progress.break-mode { stroke: var(--green); }
 
   .timer-display {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); text-align: center;
   }
   .timer-time {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 3rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    line-height: 1;
+    font-size: 3rem; font-weight: 600; letter-spacing: 2px; line-height: 1;
   }
   .timer-label {
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    margin-top: 4px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--text-muted); font-size: 0.75rem; margin-top: 4px;
+    text-transform: uppercase; letter-spacing: 1px;
   }
 
-  .timer-controls {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+  .timer-controls { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
   .btn {
-    padding: 10px 28px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: all 0.2s;
+    padding: 10px 28px; border-radius: 8px; border: none; cursor: pointer;
+    font-family: inherit; font-size: 0.85rem; font-weight: 600; transition: all 0.2s;
   }
-  .btn-primary {
-    background: var(--accent);
-    color: white;
-    box-shadow: 0 2px 16px var(--accent-glow);
-  }
+  .btn-primary { background: var(--accent); color: white; box-shadow: 0 2px 16px var(--accent-glow); }
   .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 24px var(--accent-glow); }
   .btn-primary.running { background: var(--red); box-shadow: 0 2px 16px rgba(255,107,107,0.25); }
-  .btn-secondary {
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
-    border: 1px solid var(--border);
-  }
+  .btn-secondary { background: var(--bg-secondary); color: var(--text-secondary); border: 1px solid var(--border); }
   .btn-secondary:hover { color: var(--text-primary); border-color: var(--text-muted); }
 
-  /* Subject Selector */
   .subject-selector { margin-bottom: 20px; }
   .subject-selector label {
-    display: block;
-    color: var(--text-muted);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
+    display: block; color: var(--text-muted); font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
   }
   .subject-row { display: flex; gap: 8px; justify-content: center; align-items: center; }
   .subject-select {
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-family: inherit;
-    font-size: 0.85rem;
-    min-width: 200px;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
+    background: var(--bg-secondary); color: var(--text-primary);
+    border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px;
+    font-family: inherit; font-size: 0.85rem; min-width: 200px; cursor: pointer;
+    appearance: none; -webkit-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b8fa3' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 32px;
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
   }
   .subject-select:focus { outline: none; border-color: var(--accent); }
 
   .btn-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
-    cursor: pointer;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
+    width: 34px; height: 34px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--bg-secondary);
+    color: var(--text-secondary); cursor: pointer; font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center; transition: all 0.2s;
   }
   .btn-icon:hover { border-color: var(--accent); color: var(--accent); }
 
   .today-stats {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
+    display: flex; gap: 24px; justify-content: center;
+    padding-top: 16px; border-top: 1px solid var(--border);
   }
   .stat { text-align: center; }
   .stat-value { font-size: 1.4rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
@@ -227,62 +149,39 @@
   .stat-value.green { color: var(--green); }
   .stat-label { color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
 
-  /* Charts Section */
-  .charts-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
+  .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
   @media (max-width: 700px) { .charts-grid { grid-template-columns: 1fr; } }
 
   .chart-card {
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    padding: 20px;
-    border: 1px solid var(--border);
+    background: var(--bg-card); border-radius: var(--radius);
+    padding: 20px; border: 1px solid var(--border);
   }
   .chart-card h3 {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin-bottom: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);
+    margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px;
   }
   .chart-container { position: relative; height: 200px; }
-
   .chart-card.full-width { grid-column: 1 / -1; }
   .full-width .chart-container { height: 160px; }
 
-  /* Heatmap */
   .heatmap-container { overflow-x: auto; padding-bottom: 4px; }
   .heatmap { display: flex; gap: 3px; }
   .heatmap-week { display: flex; flex-direction: column; gap: 3px; }
   .heatmap-cell {
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-    background: var(--bg-secondary);
-    cursor: pointer;
-    transition: all 0.15s;
-    position: relative;
+    width: 14px; height: 14px; border-radius: 3px;
+    background: var(--bg-secondary); cursor: pointer; transition: all 0.15s; position: relative;
   }
   .heatmap-cell:hover { transform: scale(1.3); z-index: 2; }
   .heatmap-cell.l1 { background: rgba(108, 92, 231, 0.2); }
   .heatmap-cell.l2 { background: rgba(108, 92, 231, 0.4); }
   .heatmap-cell.l3 { background: rgba(108, 92, 231, 0.6); }
   .heatmap-cell.l4 { background: var(--accent); }
-  .heatmap-labels { display: flex; flex-direction: column; gap: 3px; margin-right: 6px; padding-top: 0; }
+  .heatmap-labels { display: flex; flex-direction: column; gap: 3px; margin-right: 6px; }
   .heatmap-label { height: 14px; font-size: 0.6rem; color: var(--text-muted); display: flex; align-items: center; }
 
-  /* Session Log */
   .session-log {
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    padding: 20px;
-    border: 1px solid var(--border);
-    margin-bottom: 20px;
+    background: var(--bg-card); border-radius: var(--radius);
+    padding: 20px; border: 1px solid var(--border); margin-bottom: 20px;
   }
   .session-log h3 {
     font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);
@@ -294,17 +193,11 @@
   .log-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
   .log-entry {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.8rem;
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.8rem;
   }
   .log-entry:last-child { border-bottom: none; }
-  .log-dot {
-    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-  }
+  .log-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .log-subject { font-weight: 600; min-width: 50px; }
   .log-time { color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
   .log-duration { margin-left: auto; color: var(--accent-light); font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
@@ -316,34 +209,20 @@
 
   .empty-state { text-align: center; padding: 30px; color: var(--text-muted); font-size: 0.85rem; }
 
-  /* Modal */
   .modal-overlay {
-    display: none;
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.6); z-index: 100;
-    align-items: center; justify-content: center;
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6); z-index: 100; align-items: center; justify-content: center;
   }
   .modal-overlay.open { display: flex; }
   .modal {
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    padding: 24px;
-    width: 360px;
-    max-width: 90vw;
-    border: 1px solid var(--border);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    background: var(--bg-card); border-radius: var(--radius); padding: 24px;
+    width: 360px; max-width: 90vw; border: 1px solid var(--border); box-shadow: 0 8px 40px rgba(0,0,0,0.5);
   }
   .modal h3 { margin-bottom: 16px; font-size: 1rem; }
   .modal input {
-    width: 100%;
-    padding: 10px 12px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text-primary);
-    font-family: inherit;
-    font-size: 0.85rem;
-    margin-bottom: 12px;
+    width: 100%; padding: 10px 12px; background: var(--bg-secondary);
+    border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary);
+    font-family: inherit; font-size: 0.85rem; margin-bottom: 12px;
   }
   .modal input:focus { outline: none; border-color: var(--accent); }
   .modal-buttons { display: flex; gap: 8px; justify-content: flex-end; }
@@ -355,18 +234,10 @@
   }
   .color-swatch:hover, .color-swatch.selected { border-color: white; transform: scale(1.15); }
 
-  /* Tooltip */
   .tooltip {
-    display: none;
-    position: fixed;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 0.75rem;
-    z-index: 200;
-    pointer-events: none;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    display: none; position: fixed; background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px;
+    font-size: 0.75rem; z-index: 200; pointer-events: none; box-shadow: 0 4px 16px rgba(0,0,0,0.4);
   }
   .tooltip.show { display: block; }
 
@@ -382,7 +253,11 @@
 <div class="app">
   <div class="header">
     <h1>Study Pomodoro</h1>
-    <p>Track your study sessions and visualize progress</p>
+    <p>Track your study sessions — synced to Notion</p>
+    <div class="sync-status">
+      <div class="sync-dot" id="syncDot"></div>
+      <span id="syncLabel">Connecting...</span>
+    </div>
   </div>
 
   <div class="timer-section">
@@ -449,10 +324,7 @@
   </div>
 
   <div class="session-log">
-    <h3>
-      Recent Sessions
-      <button class="clear-btn" id="clearAllBtn">Clear All</button>
-    </h3>
+    <h3>Recent Sessions</h3>
     <div class="log-list" id="logList"></div>
   </div>
 </div>
@@ -473,37 +345,112 @@
 <div class="tooltip" id="tooltip"></div>
 
 <script>
-// ─── DATA STORE ───
-const COLORS = ['#6c5ce7','#a29bfe','#00cec9','#74b9ff','#fd79a8','#fdcb6e','#ff6b6b',
+// ─── CONFIG ───
+const API_BASE = window.location.origin;
+const COLORS_UI = ['#6c5ce7','#a29bfe','#00cec9','#74b9ff','#fd79a8','#fdcb6e','#ff6b6b',
                 '#55efc4','#e17055','#81ecec','#fab1a0','#dfe6e9','#636e72','#b2bec3'];
 
-const DEFAULT_SUBJECTS = [
-  { name:'ASE', color:'#6c5ce7' }, { name:'STM', color:'#a29bfe' },
-  { name:'ACE', color:'#00cec9' }, { name:'EM3', color:'#74b9ff' },
-  { name:'ODE', color:'#fd79a8' }, { name:'CFST', color:'#fdcb6e' },
-  { name:'FM2', color:'#ff6b6b' }, { name:'MBS', color:'#55efc4' },
-  { name:'TD1', color:'#e17055' }, { name:'TD2', color:'#81ecec' },
-  { name:'FM1', color:'#fab1a0' }, { name:'AM2', color:'#636e72' },
-  { name:'HT', color:'#74b9ff' }, { name:'LRED', color:'#fdcb6e' },
-  { name:'VASP', color:'#a29bfe' }, { name:'APS', color:'#00cec9' },
-  { name:'EE', color:'#b2bec3' }, { name:'AMSP', color:'#fd79a8' },
-  { name:'SCD', color:'#6c5ce7' }, { name:'EM2', color:'#ff6b6b' },
-  { name:'TAS', color:'#55efc4' }, { name:'CF1', color:'#e17055' },
-  { name:'CF2', color:'#81ecec' }, { name:'BLSS', color:'#fab1a0' },
-  { name:'TME', color:'#636e72' }, { name:'PAT', color:'#b2bec3' },
-  { name:'GER', color:'#dfe6e9' }, { name:'GEO', color:'#fdcb6e' },
-  { name:'CAD', color:'#74b9ff' },
-];
+const SUBJECT_COLORS = {
+  ASE:'#6c5ce7', STM:'#a29bfe', ACE:'#00cec9', EM3:'#74b9ff', ODE:'#fd79a8',
+  CFST:'#fdcb6e', FM2:'#ff6b6b', MBS:'#55efc4', TD1:'#e17055', TD2:'#81ecec',
+  FM1:'#fab1a0', AM2:'#636e72', HT:'#74b9ff', LRED:'#fdcb6e', VASP:'#a29bfe',
+  APS:'#00cec9', EE:'#b2bec3', AMSP:'#fd79a8', SCD:'#6c5ce7', EM2:'#ff6b6b',
+  TAS:'#55efc4', CF1:'#e17055', CF2:'#81ecec', BLSS:'#fab1a0', TME:'#636e72',
+  PAT:'#b2bec3', GER:'#dfe6e9', GEO:'#fdcb6e', CAD:'#74b9ff',
+};
 
-function loadData(key, fallback) {
-  try { const d = localStorage.getItem(key); return d ? JSON.parse(d) : fallback; }
-  catch { return fallback; }
+const DEFAULT_SUBJECTS = Object.keys(SUBJECT_COLORS);
+
+function getColor(subject) {
+  return SUBJECT_COLORS[subject] || '#6c5ce7';
 }
-function saveData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
 
-let subjects = loadData('pomo_subjects', DEFAULT_SUBJECTS);
-let sessions = loadData('pomo_sessions', []);
-// session = { id, subject, color, date (ISO), startTime (HH:MM), durationMin }
+// ─── STATE ───
+let subjects = [...DEFAULT_SUBJECTS];
+let sessions = []; // loaded from Notion
+let notionConnected = false;
+
+// ─── SYNC ───
+const $syncDot = document.getElementById('syncDot');
+const $syncLabel = document.getElementById('syncLabel');
+
+function setSyncStatus(status, label) {
+  $syncDot.className = 'sync-dot ' + status;
+  $syncLabel.textContent = label;
+}
+
+async function loadSessionsFromNotion() {
+  setSyncStatus('syncing', 'Syncing with Notion...');
+  try {
+    const res = await fetch(API_BASE + '/api/sessions');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    sessions = data.sessions.map(s => ({
+      id: s.id,
+      subject: s.subject,
+      color: getColor(s.subject),
+      date: s.date,
+      startTime: s.startTime,
+      durationMin: s.durationMin,
+      type: s.type,
+    }));
+    // discover any new subjects from Notion data
+    sessions.forEach(s => {
+      if (s.subject && !subjects.includes(s.subject)) {
+        subjects.push(s.subject);
+        SUBJECT_COLORS[s.subject] = s.color;
+      }
+    });
+    notionConnected = true;
+    setSyncStatus('connected', `Synced — ${sessions.length} sessions`);
+    renderSubjects();
+    updateStats();
+    renderLog();
+    renderCharts();
+    renderHeatmap();
+  } catch (err) {
+    console.error('Failed to load from Notion:', err);
+    notionConnected = false;
+    setSyncStatus('error', 'Notion sync failed — using local mode');
+  }
+}
+
+async function logSessionToNotion(session) {
+  setSyncStatus('syncing', 'Saving to Notion...');
+  try {
+    const res = await fetch(API_BASE + '/api/log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        subject: session.subject,
+        date: session.date,
+        startTime: session.startTime,
+        durationMin: session.durationMin,
+        type: session.type || 'Focus',
+      }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    session.id = data.id;
+    setSyncStatus('connected', 'Saved to Notion');
+    return true;
+  } catch (err) {
+    console.error('Failed to log to Notion:', err);
+    setSyncStatus('error', 'Save failed — session stored locally');
+    return false;
+  }
+}
+
+async function deleteSessionFromNotion(pageId) {
+  try {
+    const res = await fetch(API_BASE + '/api/delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pageId }),
+    });
+    return res.ok;
+  } catch { return false; }
+}
 
 // ─── TIMER STATE ───
 let timerMode = 'focus';
@@ -513,9 +460,8 @@ let timerRunning = false;
 let timerInterval = null;
 let sessionStart = null;
 
-const CIRCUMFERENCE = 2 * Math.PI * 100; // 628.32
+const CIRCUMFERENCE = 2 * Math.PI * 100;
 
-// ─── DOM ───
 const $timerTime = document.getElementById('timerTime');
 const $timerLabel = document.getElementById('timerLabel');
 const $timerRing = document.getElementById('timerRing');
@@ -530,13 +476,15 @@ const $tooltip = document.getElementById('tooltip');
 
 // ─── SUBJECTS ───
 function renderSubjects() {
+  const current = $subjectSelect.value;
   $subjectSelect.innerHTML = '';
-  subjects.forEach((s, i) => {
+  subjects.forEach((name, i) => {
     const opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = s.name;
+    opt.value = name;
+    opt.textContent = name;
     $subjectSelect.appendChild(opt);
   });
+  if (current && subjects.includes(current)) $subjectSelect.value = current;
 }
 
 document.getElementById('addSubjectBtn').onclick = () => {
@@ -549,11 +497,11 @@ document.getElementById('cancelModal').onclick = () => {
   document.getElementById('addModal').classList.remove('open');
 };
 
-let selectedColor = COLORS[0];
+let selectedColor = COLORS_UI[0];
 function renderColorPicker() {
   const cp = document.getElementById('colorPicker');
   cp.innerHTML = '';
-  COLORS.forEach(c => {
+  COLORS_UI.forEach(c => {
     const el = document.createElement('div');
     el.className = 'color-swatch' + (c === selectedColor ? ' selected' : '');
     el.style.background = c;
@@ -563,12 +511,14 @@ function renderColorPicker() {
 }
 
 document.getElementById('saveSubject').onclick = () => {
-  const name = document.getElementById('newSubjectName').value.trim();
+  const name = document.getElementById('newSubjectName').value.trim().toUpperCase();
   if (!name) return;
-  subjects.push({ name, color: selectedColor });
-  saveData('pomo_subjects', subjects);
+  if (!subjects.includes(name)) {
+    subjects.push(name);
+    SUBJECT_COLORS[name] = selectedColor;
+  }
   renderSubjects();
-  $subjectSelect.value = subjects.length - 1;
+  $subjectSelect.value = name;
   document.getElementById('addModal').classList.remove('open');
 };
 
@@ -589,22 +539,14 @@ function updateTimerDisplay() {
   const m = Math.floor(timerRemain / 60);
   const s = timerRemain % 60;
   $timerTime.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-
   const labels = { focus: 'Focus', short: 'Short Break', long: 'Long Break' };
   $timerLabel.textContent = labels[timerMode];
-
   const progress = 1 - (timerRemain / timerTotal);
   $timerRing.style.strokeDashoffset = CIRCUMFERENCE * (1 - progress);
   $timerRing.classList.toggle('break-mode', timerMode !== 'focus');
 }
 
-$startBtn.onclick = () => {
-  if (timerRunning) {
-    stopTimer();
-  } else {
-    startTimer();
-  }
-};
+$startBtn.onclick = () => { timerRunning ? stopTimer() : startTimer(); };
 
 $resetBtn.onclick = () => {
   stopTimer(true);
@@ -622,52 +564,49 @@ function startTimer() {
   timerInterval = setInterval(() => {
     timerRemain--;
     updateTimerDisplay();
-    if (timerRemain <= 0) {
-      completeTimer();
-    }
+    if (timerRemain <= 0) completeTimer();
   }, 1000);
 }
 
 function stopTimer(isReset) {
   timerRunning = false;
   clearInterval(timerInterval);
-  if (!isReset) {
-    $startBtn.textContent = 'Resume';
-  }
+  if (!isReset) $startBtn.textContent = 'Resume';
   $startBtn.classList.remove('running');
 }
 
-function completeTimer() {
+async function completeTimer() {
   stopTimer();
   playNotification();
 
   if (timerMode === 'focus') {
-    const subj = subjects[$subjectSelect.value] || subjects[0];
+    const subjectName = $subjectSelect.value;
     const now = new Date();
     const durationMin = Math.round(timerTotal / 60);
-    sessions.push({
-      id: Date.now(),
-      subject: subj.name,
-      color: subj.color,
+    const session = {
+      id: 'local_' + Date.now(),
+      subject: subjectName,
+      color: getColor(subjectName),
       date: now.toISOString().split('T')[0],
       startTime: sessionStart.toTimeString().slice(0,5),
-      durationMin: durationMin
-    });
-    saveData('pomo_sessions', sessions);
+      durationMin: durationMin,
+      type: 'Focus',
+    };
+
+    sessions.unshift(session);
     updateStats();
     renderLog();
     renderCharts();
     renderHeatmap();
+
+    // Sync to Notion
+    await logSessionToNotion(session);
   }
 
   // Auto switch mode
   if (timerMode === 'focus') {
     const todayCount = getTodayPomos();
-    if (todayCount % 4 === 0) {
-      switchMode('long');
-    } else {
-      switchMode('short');
-    }
+    switchMode(todayCount % 4 === 0 ? 'long' : 'short');
   } else {
     switchMode('focus');
   }
@@ -688,14 +627,11 @@ function switchMode(mode) {
 function playNotification() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const notes = [523.25, 659.25, 783.99];
-    notes.forEach((freq, i) => {
+    [523.25, 659.25, 783.99].forEach((freq, i) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.frequency.value = freq;
-      osc.type = 'sine';
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.value = freq; osc.type = 'sine';
       gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.2);
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.2 + 0.4);
       osc.start(ctx.currentTime + i * 0.2);
@@ -703,45 +639,27 @@ function playNotification() {
     });
   } catch(e) {}
   if (Notification.permission === 'granted') {
-    new Notification('Pomodoro Complete!', { body: `${timerMode === 'focus' ? 'Time for a break' : 'Back to studying'}` });
+    new Notification('Pomodoro Complete!', { body: timerMode === 'focus' ? 'Time for a break' : 'Back to studying' });
   }
 }
-
-// Request notifications
-if ('Notification' in window && Notification.permission === 'default') {
-  Notification.requestPermission();
-}
+if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission();
 
 // ─── STATS ───
 function getToday() { return new Date().toISOString().split('T')[0]; }
-
-function getTodayPomos() {
-  const today = getToday();
-  return sessions.filter(s => s.date === today).length;
-}
-
-function getTodayMinutes() {
-  const today = getToday();
-  return sessions.filter(s => s.date === today).reduce((sum, s) => sum + s.durationMin, 0);
-}
+function getTodayPomos() { return sessions.filter(s => s.date === getToday()).length; }
+function getTodayMinutes() { return sessions.filter(s => s.date === getToday()).reduce((sum, s) => sum + s.durationMin, 0); }
 
 function getStreak() {
   let streak = 0;
   const d = new Date();
   while (true) {
     const dateStr = d.toISOString().split('T')[0];
-    if (sessions.some(s => s.date === dateStr)) {
-      streak++;
+    if (sessions.some(s => s.date === dateStr)) { streak++; d.setDate(d.getDate() - 1); }
+    else if (streak === 0) {
       d.setDate(d.getDate() - 1);
-    } else if (streak === 0) {
-      // today might not have sessions yet, check yesterday
-      d.setDate(d.getDate() - 1);
-      const yd = d.toISOString().split('T')[0];
-      if (sessions.some(s => s.date === yd)) { streak++; d.setDate(d.getDate() - 1); }
+      if (sessions.some(s => s.date === d.toISOString().split('T')[0])) { streak++; d.setDate(d.getDate() - 1); }
       else break;
-    } else {
-      break;
-    }
+    } else break;
   }
   return streak;
 }
@@ -749,19 +667,17 @@ function getStreak() {
 function updateStats() {
   $todayPomos.textContent = getTodayPomos();
   const mins = getTodayMinutes();
-  const h = Math.floor(mins / 60);
-  const m = mins % 60;
-  $todayHours.textContent = `${h}h ${m}m`;
+  $todayHours.textContent = `${Math.floor(mins / 60)}h ${mins % 60}m`;
   $streak.textContent = getStreak();
 }
 
-// ─── SESSION LOG ───
+// ─── LOG ───
 function renderLog() {
   if (sessions.length === 0) {
     $logList.innerHTML = '<div class="empty-state">No sessions yet. Start a pomodoro!</div>';
     return;
   }
-  const recent = [...sessions].reverse().slice(0, 30);
+  const recent = sessions.slice(0, 30);
   $logList.innerHTML = recent.map(s => `
     <div class="log-entry">
       <div class="log-dot" style="background:${s.color}"></div>
@@ -773,77 +689,51 @@ function renderLog() {
   `).join('');
 
   $logList.querySelectorAll('.log-delete').forEach(btn => {
-    btn.onclick = () => {
-      sessions = sessions.filter(s => s.id !== parseInt(btn.dataset.id));
-      saveData('pomo_sessions', sessions);
+    btn.onclick = async () => {
+      const id = btn.dataset.id;
+      if (!id.startsWith('local_')) await deleteSessionFromNotion(id);
+      sessions = sessions.filter(s => s.id !== id);
       renderLog(); updateStats(); renderCharts(); renderHeatmap();
     };
   });
 }
 
-document.getElementById('clearAllBtn').onclick = () => {
-  if (confirm('Delete all session data? This cannot be undone.')) {
-    sessions = [];
-    saveData('pomo_sessions', sessions);
-    renderLog(); updateStats(); renderCharts(); renderHeatmap();
-  }
-};
-
 // ─── CHARTS ───
 let subjectChart, dailyChart;
 
 function renderCharts() {
-  // Subject chart (this week)
   const now = new Date();
   const weekStart = new Date(now);
-  weekStart.setDate(now.getDate() - now.getDay() + 1); // Monday
+  weekStart.setDate(now.getDate() - now.getDay() + 1);
   weekStart.setHours(0,0,0,0);
   const weekStr = weekStart.toISOString().split('T')[0];
 
   const weekSessions = sessions.filter(s => s.date >= weekStr);
   const subjMap = {};
-  weekSessions.forEach(s => {
-    subjMap[s.subject] = (subjMap[s.subject] || 0) + s.durationMin;
-  });
+  weekSessions.forEach(s => { subjMap[s.subject] = (subjMap[s.subject] || 0) + s.durationMin; });
   const sorted = Object.entries(subjMap).sort((a,b) => b[1] - a[1]).slice(0, 12);
-  const subjectColors = sorted.map(([name]) => {
-    const subj = subjects.find(s => s.name === name);
-    return subj ? subj.color : '#6c5ce7';
-  });
 
   if (subjectChart) subjectChart.destroy();
   subjectChart = new Chart(document.getElementById('subjectChart'), {
     type: 'doughnut',
     data: {
       labels: sorted.map(([n]) => n),
-      datasets: [{ data: sorted.map(([,v]) => v), backgroundColor: subjectColors, borderWidth: 0 }]
+      datasets: [{ data: sorted.map(([,v]) => v), backgroundColor: sorted.map(([n]) => getColor(n)), borderWidth: 0 }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { position: 'right', labels: { color: '#8b8fa3', font: { size: 11 }, padding: 8, boxWidth: 12 } },
-        tooltip: {
-          callbacks: { label: ctx => `${ctx.label}: ${Math.round(ctx.raw)}min (${(ctx.raw/60).toFixed(1)}h)` }
-        }
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${Math.round(ctx.raw)}min (${(ctx.raw/60).toFixed(1)}h)` } }
       },
       cutout: '65%',
     }
   });
 
-  // Daily chart (last 14 days)
   const days = [];
-  for (let i = 13; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(d.getDate() - i);
-    days.push(d.toISOString().split('T')[0]);
-  }
-  const dailyMins = days.map(date =>
-    sessions.filter(s => s.date === date).reduce((sum, s) => sum + s.durationMin, 0)
-  );
-  const dayLabels = days.map(d => {
-    const dt = new Date(d + 'T12:00:00');
-    return dt.toLocaleDateString('en', { weekday: 'short', day: 'numeric' });
-  });
+  for (let i = 13; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); days.push(d.toISOString().split('T')[0]); }
+  const dailyMins = days.map(date => sessions.filter(s => s.date === date).reduce((sum, s) => sum + s.durationMin, 0));
+  const dayLabels = days.map(d => { const dt = new Date(d + 'T12:00:00'); return dt.toLocaleDateString('en', { weekday: 'short', day: 'numeric' }); });
 
   if (dailyChart) dailyChart.destroy();
   dailyChart = new Chart(document.getElementById('dailyChart'), {
@@ -853,23 +743,15 @@ function renderCharts() {
       datasets: [{
         data: dailyMins.map(m => +(m/60).toFixed(1)),
         backgroundColor: dailyMins.map(m => m > 0 ? 'rgba(108,92,231,0.6)' : 'rgba(108,92,231,0.1)'),
-        borderColor: 'rgba(108,92,231,0.8)',
-        borderWidth: 1,
-        borderRadius: 4,
+        borderColor: 'rgba(108,92,231,0.8)', borderWidth: 1, borderRadius: 4,
       }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { callbacks: { label: ctx => `${ctx.raw}h studied` } }
-      },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.raw}h studied` } } },
       scales: {
         x: { ticks: { color: '#5c6070', font: { size: 9 } }, grid: { display: false } },
-        y: {
-          ticks: { color: '#5c6070', font: { size: 10 }, callback: v => v + 'h' },
-          grid: { color: 'rgba(46,50,64,0.5)' }, beginAtZero: true
-        }
+        y: { ticks: { color: '#5c6070', font: { size: 10 }, callback: v => v + 'h' }, grid: { color: 'rgba(46,50,64,0.5)' }, beginAtZero: true }
       }
     }
   });
@@ -879,22 +761,15 @@ function renderCharts() {
 function renderHeatmap() {
   const container = document.getElementById('heatmapContainer');
   const dayLabels = ['Mon','','Wed','','Fri','','Sun'];
-
-  // Build 12 weeks of data
   const today = new Date();
-  const weeks = [];
   const startDate = new Date(today);
-  startDate.setDate(today.getDate() - 83); // ~12 weeks
-  // Align to Monday
+  startDate.setDate(today.getDate() - 83);
   while (startDate.getDay() !== 1) startDate.setDate(startDate.getDate() - 1);
 
   const dateMap = {};
-  sessions.forEach(s => {
-    dateMap[s.date] = (dateMap[s.date] || 0) + s.durationMin;
-  });
+  sessions.forEach(s => { dateMap[s.date] = (dateMap[s.date] || 0) + s.durationMin; });
 
-  let html = '<div style="display:flex">';
-  html += '<div class="heatmap-labels">';
+  let html = '<div style="display:flex"><div class="heatmap-labels">';
   dayLabels.forEach(l => { html += `<div class="heatmap-label">${l}</div>`; });
   html += '</div><div class="heatmap">';
 
@@ -911,38 +786,20 @@ function renderHeatmap() {
     else if (mins > 60 && mins <= 120) level = 'l3';
     else if (mins > 120) level = 'l4';
 
-    const title = `${dateStr}: ${mins}min (${(mins/60).toFixed(1)}h)`;
-    weekHtml += `<div class="heatmap-cell ${level}" data-tip="${title}"></div>`;
+    weekHtml += `<div class="heatmap-cell ${level}" data-tip="${dateStr}: ${mins}min (${(mins/60).toFixed(1)}h)"></div>`;
     dayOfWeek++;
-
-    if (dayOfWeek === 7) {
-      weekHtml += '</div>';
-      html += weekHtml;
-      weekHtml = '<div class="heatmap-week">';
-      dayOfWeek = 0;
-    }
+    if (dayOfWeek === 7) { weekHtml += '</div>'; html += weekHtml; weekHtml = '<div class="heatmap-week">'; dayOfWeek = 0; }
     d.setDate(d.getDate() + 1);
   }
-  // Close remaining
   if (dayOfWeek > 0) {
-    for (let i = dayOfWeek; i < 7; i++) {
-      weekHtml += '<div class="heatmap-cell" style="opacity:0"></div>';
-    }
-    weekHtml += '</div>';
-    html += weekHtml;
+    for (let i = dayOfWeek; i < 7; i++) weekHtml += '<div class="heatmap-cell" style="opacity:0"></div>';
+    weekHtml += '</div>'; html += weekHtml;
   }
-
   html += '</div></div>';
   container.innerHTML = html;
 
-  // Tooltips
   container.querySelectorAll('.heatmap-cell[data-tip]').forEach(cell => {
-    cell.onmouseenter = (e) => {
-      $tooltip.textContent = cell.dataset.tip;
-      $tooltip.classList.add('show');
-      $tooltip.style.left = e.pageX + 10 + 'px';
-      $tooltip.style.top = e.pageY - 30 + 'px';
-    };
+    cell.onmouseenter = (e) => { $tooltip.textContent = cell.dataset.tip; $tooltip.classList.add('show'); $tooltip.style.left = e.pageX+10+'px'; $tooltip.style.top = e.pageY-30+'px'; };
     cell.onmouseleave = () => { $tooltip.classList.remove('show'); };
   });
 }
@@ -950,10 +807,7 @@ function renderHeatmap() {
 // ─── INIT ───
 renderSubjects();
 updateTimerDisplay();
-updateStats();
-renderLog();
-renderCharts();
-renderHeatmap();
+loadSessionsFromNotion();
 </script>
 </body>
 </html>
